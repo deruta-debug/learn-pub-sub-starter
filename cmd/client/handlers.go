@@ -17,11 +17,10 @@ func handlerMove(gs *gamelogic.GameState) func(gamelogic.ArmyMove) pubsub.Acktyp
 		case gamelogic.MoveOutComeSafe, gamelogic.MoveOutcomeMakeWar:
 			return pubsub.Ack
 		case gamelogic.MoveOutcomeSamePlayer:
-			fallthrough
-		default:
-			fmt.Println("error: unknown move outcome")
 			return pubsub.NackDiscard
 		}
+		fmt.Println("error: unknown move outcome")
+		return pubsub.NackDiscard
 	}
 }
 
